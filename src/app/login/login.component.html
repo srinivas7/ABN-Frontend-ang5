@@ -1,3 +1,17 @@
-<p>
-  login works!
-</p>
+<div class="container">
+  <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+    <label>User Name
+        <input type="text" formControlName="name">
+    </label>
+    <div class="alert" *ngIf="!loginForm.controls['name'].valid && loginForm.controls['name'].touched">{{ titleAlert }}</div>
+    <label>Password
+        <input type="text" formControlName="pwd">
+    </label>
+    <div class="alert" *ngIf="!loginForm.controls['pwd'].valid && loginForm.controls['pwd'].touched">{{ pwdAlert }}</div>
+    <div class="alert alert-danger" *ngIf="!loginForm.controls['pwd'].valid && loginForm.controls['pwd'].touched">
+        <strong>Error!</strong> {{ pwdAlert }}
+    </div>
+    
+    <input type="submit" class="button expanded" value="Login" [disabled]="!loginForm.valid">
+  </form>
+</div>
