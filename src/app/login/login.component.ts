@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { LoginService } from './login.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,7 +17,7 @@ export class LoginComponent implements OnInit {
   titleAlert:string = 'User name is required';
   pwdAlert:string = 'Password is required'
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private loginService: LoginService) {
     this.loginForm = fb.group({
       'name': [null, [Validators.required, Validators.minLength(3)]],
       'pwd': [null, [Validators.required]]
@@ -28,6 +30,10 @@ export class LoginComponent implements OnInit {
   login(){
     console.log(this.loginForm.get('name').value);
     console.log(this.loginForm.get('pwd').value);
+    this.loginService.login({})
+        .subscribe((res)=>{ 
+          console.log(res);
+        })
   }
 
 }
