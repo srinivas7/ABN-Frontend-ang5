@@ -8,11 +8,18 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/login.service';
+import { HeaderComponent } from './header/header.component';
+import { AlbumsComponent } from './albums/albums.component';
+import { SingleAlbumComponent } from './single-album/single-album.component';
+import { CommonService } from './services/service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    HeaderComponent,
+    AlbumsComponent,
+    SingleAlbumComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +29,8 @@ import { LoginService } from './login/login.service';
     ABNRouteConfiguration
   ],
   providers: [
-    LoginService
+    LoginService,
+    CommonService
   ],
   bootstrap: [AppComponent]
 })
