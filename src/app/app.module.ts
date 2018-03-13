@@ -12,6 +12,8 @@ import { HeaderComponent } from './header/header.component';
 import { AlbumsComponent } from './albums/albums.component';
 import { SingleAlbumComponent } from './single-album/single-album.component';
 import { CommonService } from './services/service';
+import { SavComponent } from './sav/sav.component';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { CommonService } from './services/service';
     LoginComponent,
     HeaderComponent,
     AlbumsComponent,
-    SingleAlbumComponent
+    SingleAlbumComponent,
+    SavComponent
   ],
   imports: [
     BrowserModule,

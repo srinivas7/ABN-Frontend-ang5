@@ -1,19 +1,7 @@
 <div class="album-container row">
   <div class="album row" *ngFor="let album of albums?.entityMap?.collectionList">
       <div class="col-sm-6 col-xs-7 col-lg-8" style="margin:25px 15px 25px 15px;">
-          <div class="square" ng-click="abn.openAlbum(album.id)">
-              <div>
-                  <div>
-                      <div class="zoom" (mouseenter)="albumHover($event)" (mouseleave)="albumLeave($event)">
-                          <img id="{{album.assetId}}" class="zoom1" 
-                              src={{album.thumbnailEncryption}} alt="" width="100%" />
-                          <div class="middle">
-                            <div class="text">{{album.albumName}}</div>
-                          </div>
-                    </div>
-                  </div>
-              </div>
-          </div>
+        <single-album [albumInfo]="album"></single-album>
     </div>
   </div>
 </div>

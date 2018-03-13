@@ -1,3 +1,13 @@
-<p>
-  single-album works!
-</p>
+<div class="square" (click)="openAlbum(albumInfo)">
+    <div>
+        <div>
+            <div class="zoom" (mouseenter)="albumHover($event)" (mouseleave)="albumLeave($event)">
+                <img id="{{albumInfo.assetId}}" class="zoom1" 
+                    src={{albumInfo.thumbnailEncryption}} alt="" width="100%" />
+                <div class="middle">
+                  <div class="text">{{albumInfo.albumName}}</div>
+                </div>
+          </div>
+        </div>
+    </div>
+</div>

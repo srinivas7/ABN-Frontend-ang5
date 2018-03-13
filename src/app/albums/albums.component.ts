@@ -1,4 +1,4 @@
-import { Component, OnInit,  Renderer2, ElementRef, } from '@angular/core';
+import { Component, OnInit,  Renderer2, ElementRef } from '@angular/core';
 import { CommonService } from '../services/service';
 @Component({
   selector: 'app-albums',
@@ -7,7 +7,7 @@ import { CommonService } from '../services/service';
 })
 export class AlbumsComponent implements OnInit {
   albums = {};
-  constructor(private renderer: Renderer2, private el: ElementRef,private service: CommonService) { }
+  constructor(private service: CommonService) { }
 
   ngOnInit() {
     this.service.getAlbums()
@@ -17,12 +17,12 @@ export class AlbumsComponent implements OnInit {
       })
   }
 
-  albumHover(event){
-    console.log(event);
-    //this.renderer.addClass(this.el.nativeElement, 'wild');
-  }
-  albumLeave(event){
-    console.log(event);
-  }
+  // albumHover(event){
+  //   console.log(event);
+  //   //this.renderer.addClass(this.el.nativeElement, 'wild');
+  // }
+  // albumLeave(event){
+  //   console.log(event);
+  // }
 
 }
