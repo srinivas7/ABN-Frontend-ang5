@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpClient, HttpEvent, HttpParams} from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpHeaders, HttpRequest, HttpClient, HttpEvent, HttpParams} from '@angular/common/http';
+import { Http, Headers, Request, Response, RequestOptions } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -8,7 +8,8 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class CommonService {
-    constructor(private http: HttpClient) {}
+    headers;
+    constructor(private http: HttpClient, private _http:Http) {}
     
     login(data) {
         let httpOptions = {
@@ -37,5 +38,26 @@ export class CommonService {
         return this.http.get('./assets/albums.json')
             .map((res)=>res);
     }
+
+    getSAVInfo(){
+        return this.http.get('./assets/singleAlbum.json')
+            .map((res)=>res);
+    }
+
+    /**
+   * Makes the HTTP request and returns an Observable
+   */
+  makeRequest (body): Observable<any>
+   {
+    let url = 'http://api-test.com';
+    this.headers = new Headers();
+    this.headers.set('Content-Type', 'application/octet-stream');
+    this.headers.set('Upload-Content-Type', body.type)
+    console.log(body);
+    let options = new RequestOptions({ headers: this.headers });
+    return this._http.post(url, body, options)
+        .map((res) => res.json());
+   }
+
 
 }

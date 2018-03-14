@@ -1,3 +1,41 @@
-<p>
-  sav works!
-</p>
+<div class="container">
+    <div class="jumbotron main-img">
+      <div>
+        <img id="{{savInfo?.entities[0]?.id}}" class="zoom1 sav-main-img" src="{{savInfo?.entities[0].url}}" alt="" width="100%" />
+      </div>
+    </div>
+</div>
+<!-- <div class="sav-images-container">
+    <div class="row"  *ngFor="let image of savInfo?.entities">
+      <div class="col-sm-6 col-xs-7 col-lg-3 album-img">
+          <div class="square" (click)="openSingleImg(image)">
+              <div>
+                  <div>
+                      <div class="zoom">
+                        <img id="{{image?.id}}" class="zoom" src="{{image?.url}}" alt="" height="125px" width="100%" />
+                         <div class="middle">
+                  </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div> -->
+<div class="container images-container">
+  <div class="image" *ngFor="let image of savInfo?.entities">
+      <div class="col-xs-6 col-md-3">
+        <a class="thumbnail">
+          <img src="{{image?.url}}" alt="image" style="width: 170px;">
+        </a>
+      </div>
+  </div>
+</div>
+  <!-- <div class="box" id="box" ng-if="showImageLayer">
+    <div class="close-img" ng-click="showImageLayer = false"><a>X</a></div>
+    <div class="img-holder">
+      <img id="{{abn.singleImgData._id}}" class="zoom" ng-src="{{abn.singleImgData.url}}" alt=""/>
+      <div class="img-name">hii</div>
+    </div>
+  </div> -->
+  

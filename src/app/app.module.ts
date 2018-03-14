@@ -4,6 +4,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ABNRouteConfiguration } from './app.route.config';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -29,7 +30,8 @@ import { SavComponent } from './sav/sav.component';
     HttpClientModule,
     ReactiveFormsModule,
     NgbModule.forRoot(),
-    ABNRouteConfiguration
+    ABNRouteConfiguration,
+    HttpModule
   ],
   providers: [
     LoginService,
