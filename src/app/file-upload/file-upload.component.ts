@@ -7,7 +7,7 @@ import { CommonService } from '../services/service';
   styleUrls: ['./file-upload.component.css']
 })
 export class FileUploadComponent implements OnInit {
-
+  fileToUpload: File = null;
   constructor(private service: CommonService) { }
 
   ngOnInit() {
@@ -17,6 +17,7 @@ export class FileUploadComponent implements OnInit {
     let formData = new FormData();
     let image = event.target.files[0];
     formData.append('file',image);
+    formData.append('contentType', "image/jpg");
     let pattern = /image-*/;
     let reader = new FileReader();
 
@@ -37,6 +38,16 @@ export class FileUploadComponent implements OnInit {
         );
 
   }
+
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+
+    this.service.postFile(this.fileToUpload).subscribe(data => {
+        console.log('file uploaded');
+      }, error => {
+        console.log(error);
+      });
+}
 
   private handleSuccess(response) {
     console.log('Successfully uploaded image');

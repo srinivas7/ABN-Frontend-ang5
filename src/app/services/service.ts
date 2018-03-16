@@ -61,14 +61,32 @@ export class CommonService {
     // let options = new RequestOptions({ headers: this.headers });
     // return this._http.post(url, body, options)
     //     .map((res) => res.json());
-
-
+    this.headers = new Headers();
+    this.headers.append('Access-Control-Allow-Headers', 'Content-Type');
+    //this.headers.append('Access-Control-Allow-Methods','GET','POST','PUT','DELETE','OPTIONS');
+    this.headers.append('Access-Control-Allow-Origin', '*');
+    this.headers.set('Content-Type', 'multipart/*');
     let httpOptions = {
-        headers: new HttpHeaders({})
+        headers: this.headers
     }
-    return this.http.post(url,httpOptions)
+    return this.http.post(url,body, httpOptions)
         .map((data) => data);
    }
+
+   postFile(fileToUpload: File): Observable<boolean> {
+    let url = 'http://localhost:8080/imageUpload';
+    this.headers = new Headers();
+    this.headers.append('Access-Control-Allow-Headers', 'Content-Type');
+    let httpOptions = {
+        headers: this.headers
+    }
+    const formData: FormData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
+    return this.http
+      .post(url, formData, { headers: this.headers })
+      .map(() => { return true; });
+      
+}
 
 
 }
