@@ -2,23 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { CommonService } from '../services/service';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: 'file-upload',
+  templateUrl: './file-upload.component.html',
+  styleUrls: ['./file-upload.component.css']
 })
-export class HeaderComponent implements OnInit {
-  headers: Headers = new Headers();
+export class FileUploadComponent implements OnInit {
+
   constructor(private service: CommonService) { }
 
   ngOnInit() {
-    
   }
-    
-  /**
-   * Handles the change event of the input tag,
-   * Extracts the image file uploaded and 
-   * makes an Http request with the image file.
-   */ 
+
   handleInputChange (event) {
     let formData = new FormData();
     let image = event.target.files[0];
@@ -43,7 +37,7 @@ export class HeaderComponent implements OnInit {
         );
 
   }
-  
+
   private handleSuccess(response) {
     console.log('Successfully uploaded image');
     //provide your own implementation of handling the response from API
@@ -53,4 +47,5 @@ export class HeaderComponent implements OnInit {
     console.error('Error uploading image')
     //provide your own implementation of displaying the error message
   }
+
 }

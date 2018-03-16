@@ -39,6 +39,10 @@ export class CommonService {
             .map((res)=>res);
     }
 
+    dummyRequest(){
+        return this.http.get('http://localhost:8080/singleAlbum/234')
+            .map((res)=>res);
+    }
     getSAVInfo(){
         return this.http.get('./assets/singleAlbum.json')
             .map((res)=>res);
@@ -49,14 +53,21 @@ export class CommonService {
    */
   makeRequest (body): Observable<any>
    {
-    let url = 'http://api-test.com';
-    this.headers = new Headers();
-    this.headers.set('Content-Type', 'application/octet-stream');
-    this.headers.set('Upload-Content-Type', body.type)
-    console.log(body);
-    let options = new RequestOptions({ headers: this.headers });
-    return this._http.post(url, body, options)
-        .map((res) => res.json());
+    let url = 'http://localhost:8080/imageUpload';
+    // this.headers = new Headers();
+    // //this.headers.set('Content-Type', 'application/octet-stream');
+    // this.headers.set('Upload-Content-Type', body.type)
+    // console.log(body);
+    // let options = new RequestOptions({ headers: this.headers });
+    // return this._http.post(url, body, options)
+    //     .map((res) => res.json());
+
+
+    let httpOptions = {
+        headers: new HttpHeaders({})
+    }
+    return this.http.post(url,httpOptions)
+        .map((data) => data);
    }
 
 

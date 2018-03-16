@@ -14,6 +14,7 @@ import { AlbumsComponent } from './albums/albums.component';
 import { SingleAlbumComponent } from './single-album/single-album.component';
 import { CommonService } from './services/service';
 import { SavComponent } from './sav/sav.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { SavComponent } from './sav/sav.component';
     HeaderComponent,
     AlbumsComponent,
     SingleAlbumComponent,
-    SavComponent
+    SavComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,
