@@ -73,7 +73,7 @@ export class CommonService {
         .map((data) => data);
    }
 
-   postFile(fileToUpload: File): Observable<boolean> {
+   postFile(payload): Observable<boolean> {
     let url = 'http://localhost:8080/imageUpload';
     this.headers = new Headers();
     //this.headers.append('Access-Control-Allow-Headers', 'Content-Type');
@@ -81,11 +81,17 @@ export class CommonService {
     let httpOptions = {
         headers: this.headers
     }
+
     const formData: FormData = new FormData();
-    formData.append('file', fileToUpload, fileToUpload.name);
-    //, { headers: this.headers }
-    return this.http
-      .post(url, formData)
+    formData.append('file', payload.fileToUpload, payload.fileToUpload.name);
+    //formData.append('data', payload.data);
+
+    let params = {
+        data : payload.data
+    }
+    let options =  new RequestOptions({params: params});
+    return this._http
+      .post(url, formData, options)
       .map(() => { return true; });
       
 }

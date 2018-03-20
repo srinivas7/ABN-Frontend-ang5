@@ -8,6 +8,7 @@ import { CommonService } from '../services/service';
 })
 export class FileUploadComponent implements OnInit {
   fileToUpload: File = null;
+  currentDate = new Date();
   constructor(private service: CommonService) { }
 
   ngOnInit() {
@@ -40,9 +41,30 @@ export class FileUploadComponent implements OnInit {
   }
 
   handleFileInput(files: FileList) {
+    let data = {  
+        "ownerId":14255,
+        "thumbnailEncryption" : "images.pexels.com",
+        "id" : 24545,
+        "albumName": "new albums",
+        "images" : [
+          {  
+           "ownerAccountId":14259,
+           "url":"images.pexels.com",
+           "dateTaken":this.currentDate,
+           "id":1000
+        }
+       ]
+    }
+
+
     this.fileToUpload = files.item(0);
 
-    this.service.postFile(this.fileToUpload).subscribe(data => {
+    let payload = {
+      data : data,
+      fileToUpload: this.fileToUpload
+    }
+
+    this.service.postFile(payload).subscribe(data => {
         console.log('file uploaded');
       }, error => {
         console.log(error);
