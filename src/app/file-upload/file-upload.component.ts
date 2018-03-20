@@ -8,6 +8,7 @@ import { CommonService } from '../services/service';
 })
 export class FileUploadComponent implements OnInit {
   fileToUpload: File = null;
+  thumbnailUrl;
   constructor(private service: CommonService) { }
 
   ngOnInit() {
@@ -43,11 +44,44 @@ export class FileUploadComponent implements OnInit {
     this.fileToUpload = files.item(0);
 
     this.service.postFile(this.fileToUpload).subscribe(data => {
-        console.log('file uploaded..');
+        //console.log('file uploaded..', data["images"][0]);
+        //this.newAlbum(data["images"][0]);
       }, error => {
         console.log(error);
       });
-}
+  }
+
+  newAlbum(imgUrl){
+    let obj = {  
+      "ownerId":14255,
+        "thumbnailEncryption" : imgUrl,
+        "id" : 24545,
+        "albumName": "new albums",
+       "images" : [
+          {  
+           "ownerAccountId":14259,
+           "url":"images.pexels.com",
+           "dateTaken":1466181881000,
+           "id":1000
+        },
+        {  
+           "ownerAccountId":14259,
+           "url":"images.pexels.com",
+           "dateTaken":1466181881000,
+           "id":1000
+        }
+       ]
+    }
+
+    this.service.newAlbum(obj)
+        .subscribe(
+          response  => { console.log("new album created") },
+          error =>  {this.handleError(error); }
+        )
+
+  }
+
+
 
   private handleSuccess(response) {
     console.log('Successfully uploaded image');

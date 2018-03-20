@@ -73,11 +73,9 @@ export class CommonService {
         .map((data) => data);
    }
 
-   postFile(fileToUpload: File): Observable<boolean> {
+   postFile(fileToUpload: File) {
     let url = 'http://localhost:8080/imageUpload';
     this.headers = new Headers();
-    //this.headers.append('Access-Control-Allow-Headers', 'Content-Type');
-    //this.headers.append('Content-Type','');
     let httpOptions = {
         headers: this.headers
     }
@@ -86,9 +84,21 @@ export class CommonService {
     //, { headers: this.headers }
     return this.http
       .post(url, formData)
-      .map(() => { return true; });
+      .map((res) => res);
       
-}
+   }
+
+   newAlbum(data){
+    let url = 'http://localhost:8080/newAlbum';
+    let httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type':  'application/json'
+        })
+    }
+    return this.http.post(url, data)
+        .map((data) => data);
+
+   }
 
 
 }
